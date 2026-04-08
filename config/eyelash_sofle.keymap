@@ -47,11 +47,11 @@
         tap-ms = <100>;
     };
 
-    toggle_layer_13: toggle_layer_13 {
+    right_layer: right_layer {
         compatible = "zmk,behavior-tap-dance";
-        label = "TOGGLE_LAYER_13";
+        label = "RIGHT_LAYER";
         #binding-cells = <0>;
-        bindings = <&mo 1>, <&to 3>, <&toggle_my_computer>;
+        bindings = <&mo 1>, <&to 2>, <&toggle_my_computer>;
 
         tapping-term-ms = <400>;
     };
@@ -131,11 +131,11 @@
         bindings = <&excel_max>, <&excel_min>, <&excel_large>;
     };
 
-    new_behavior_12: new_behavior_12 {
+    left_layer: left_layer {
         compatible = "zmk,behavior-tap-dance";
-        label = "NEW_BEHAVIOR_12";
+        label = "LEFT_LAYER";
         #binding-cells = <0>;
-        bindings = <&mo 1>, <&to 2>, <&toggle_my_computer>;
+        bindings = <&mo 1>, <&mo 3>, <&toggle_my_computer>;
 
         tapping-term-ms = <400>;
     };
@@ -382,6 +382,20 @@
             bindings = <&kp O &kp R &kp LPAR>;
             label = "EXCEL_OR";
         };
+
+        switch_bt1_usb: switch_bt1_usb {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&bt BT_SEL 0 &out OUT_TOG>;
+            label = "SWITCH_BT1_USB";
+        };
+
+        swtich_bt2_usb: swtich_bt2_usb {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&bt BT_SEL 1 &out OUT_TOG>;
+            label = "SWTICH_BT2_USB";
+        };
     };
 
     keymap {
@@ -389,11 +403,11 @@
 
         BASE {
             bindings = <
-&kp ESC                &kp N1     &kp N2        &kp N3        &kp N4            &kp N5       &kp UP_ARROW     &kp N6     &kp N7     &kp N8            &kp N9                       &kp N0      &kp BACKSPACE
-&kp TAB                &kp Q      &kp W         &kp E         &kp R             &kp T        &kp DOWN_ARROW   &kp Y      &kp U      &kp I             &kp O                        &kp P       &kp BSLH
-&ctrl_shift_alt_combo  &kp A      &kp S         &kp D         &kp F             &kp G        &kp LEFT_ARROW   &kp H      &kp J      &kp K             &kp L                        &kp SEMI    &kp APOS
-&kp LSHFT              &kp Z      &kp X         &kp C         &kp V             &kp B        &kp RIGHT_ARROW  &kp N      &kp M      &kp COMMA         &kp DOT                      &kp FSLH    &kp RCTRL
-&kp C_MUTE             &kp LCTRL  &kp LEFT_GUI  &kp LEFT_ALT  &new_behavior_12  &kp SPACE    &kp ENTER        &kp SPACE  &kp ENTER  &toggle_layer_13  &shift_ctrl_shift_alt_combo  &kp DELETE
+&kp ESC                &kp N1     &kp N2        &kp N3        &kp N4       &kp N5       &kp UP_ARROW     &kp N6     &kp N7     &kp N8        &kp N9                       &kp N0      &kp BACKSPACE
+&kp TAB                &kp Q      &kp W         &kp E         &kp R        &kp T        &kp DOWN_ARROW   &kp Y      &kp U      &kp I         &kp O                        &kp P       &kp BSLH
+&ctrl_shift_alt_combo  &kp A      &kp S         &kp D         &kp F        &kp G        &kp LEFT_ARROW   &kp H      &kp J      &kp K         &kp L                        &kp SEMI    &kp APOS
+&kp LSHFT              &kp Z      &kp X         &kp C         &kp V        &kp B        &kp RIGHT_ARROW  &kp N      &kp M      &kp COMMA     &kp DOT                      &kp FSLH    &kp RCTRL
+&password_string       &kp LCTRL  &kp LEFT_GUI  &kp LEFT_ALT  &left_layer  &kp SPACE    &kp ENTER        &kp SPACE  &kp ENTER  &right_layer  &shift_ctrl_shift_alt_combo  &kp DELETE
             >;
 
             sensor-bindings = <&scroll_encoder>;
@@ -402,28 +416,15 @@
 
         ADVANCE {
             bindings = <
-&kp GRAVE     &kp F1        &kp F2       &kp F3         &kp F4         &kp F5    &kp PG_UP      &kp F6            &kp F7          &kp F8     &kp F9            &kp F10            &trans
-&trans        &kp LS(F1)    &kp LS(F2)   &kp LS(F3)     &kp LA(F4)     &trans    &kp PAGE_DOWN  &trans            &trans          &trans     &trans            &kp F11            &kp F12
-&kp CAPSLOCK  &kp HOME      &kp END      &kp PG_UP      &kp PG_DN      &trans    &kp HOME       &password_string  &kp MINUS       &kp EQUAL  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp RIGHT_SHIFT
-&trans        &kp LC(HOME)  &kp LC(END)  &kp LC(PG_UP)  &kp LC(PG_DN)  &trans    &kp END        &trans            &kp UNDERSCORE  &kp PLUS   &kp LEFT_BRACE    &kp RIGHT_BRACE    &trans
-&to 2         &out OUT_TOG  &trans       &trans         &trans         &trans    &trans         &trans            &kp LC(ENTER)   &trans     &trans            &out OUT_TOG
+&kp GRAVE     &kp F1           &kp F2           &kp F3         &kp F4         &kp F5    &kp PG_UP      &kp F6  &kp F7          &kp F8         &kp F9            &kp F10            &trans
+&trans        &kp LS(F1)       &kp LS(F2)       &kp LS(F3)     &kp LA(F4)     &trans    &kp PAGE_DOWN  &trans  &trans          &kp LA(EQUAL)  &trans            &kp F11            &kp F12
+&kp CAPSLOCK  &kp HOME         &kp END          &kp PG_UP      &kp PG_DN      &trans    &kp HOME       &trans  &kp MINUS       &kp EQUAL      &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp RIGHT_SHIFT
+&trans        &kp LC(HOME)     &kp LC(END)      &kp LC(PG_UP)  &kp LC(PG_DN)  &trans    &kp END        &trans  &kp UNDERSCORE  &kp PLUS       &kp LEFT_BRACE    &kp RIGHT_BRACE    &trans
+&to 3         &switch_bt1_usb  &swtich_bt2_usb  &trans         &trans         &trans    &trans         &trans  &kp LC(ENTER)   &trans         &trans            &out OUT_TOG
             >;
 
             display-name = "ADVANCE";
             sensor-bindings = <&mouse_scroll_h>;
-        };
-
-        DEVICE {
-            bindings = <
-&out OUT_TOG  &bt BT_PRV       &bt BT_NXT        &bt BT_SEL 0     &bt BT_CLR       &bt BT_CLR_ALL     &mmv MOVE_UP     &trans  &trans  &trans  &trans  &trans  &trans
-&trans        &trans           &trans            &trans           &trans           &trans             &mmv MOVE_DOWN   &trans  &trans  &trans  &trans  &trans  &sys_reset
-&trans        &trans           &soft_off         &trans           &trans           &trans             &mmv MOVE_LEFT   &trans  &trans  &trans  &trans  &trans  &trans
-&trans        &trans           &password_string  &trans           &trans           &bootloader        &mmv MOVE_RIGHT  &trans  &trans  &trans  &trans  &trans  &soft_off
-&trans        &rgb_ug RGB_BRD  &rgb_ug RGB_BRI   &rgb_ug RGB_EFR  &rgb_ug RGB_EFF  &rgb_ug RGB_TOG    &mkp LCLK        &trans  &trans  &to 1   &trans  &trans
-            >;
-
-            sensor-bindings = <&inc_dec_kp LC(PG_DN) LC(PAGE_UP)>;
-            label = "BT&LED";
         };
 
         NUMPAD {
@@ -437,6 +438,19 @@
 
             sensor-bindings = <&inc_dec_kp LC(PAGE_DOWN) LC(PAGE_UP)>;
             label = "NUMPAD";
+        };
+
+        DEVICE {
+            bindings = <
+&out OUT_TOG  &bt BT_PRV       &bt BT_NXT       &bt BT_SEL 0     &bt BT_CLR       &bt BT_CLR_ALL     &mmv MOVE_UP     &trans  &trans  &trans  &trans  &trans  &trans
+&trans        &trans           &trans           &trans           &trans           &trans             &mmv MOVE_DOWN   &trans  &trans  &trans  &trans  &trans  &sys_reset
+&trans        &trans           &soft_off        &trans           &trans           &trans             &mmv MOVE_LEFT   &trans  &trans  &trans  &trans  &trans  &trans
+&trans        &trans           &trans           &trans           &trans           &bootloader        &mmv MOVE_RIGHT  &trans  &trans  &trans  &trans  &trans  &soft_off
+&trans        &rgb_ug RGB_BRD  &rgb_ug RGB_BRI  &rgb_ug RGB_EFR  &rgb_ug RGB_EFF  &rgb_ug RGB_TOG    &mkp LCLK        &trans  &trans  &to 0   &trans  &trans
+            >;
+
+            sensor-bindings = <&inc_dec_kp LC(PG_DN) LC(PAGE_UP)>;
+            label = "BT&LED";
         };
     };
 };
