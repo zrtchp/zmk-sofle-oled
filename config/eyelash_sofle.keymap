@@ -176,7 +176,11 @@
         password_string: pi_value {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp Z &kp S &kp D &kp C &kp X &kp DOT &kp N1 &kp N2 &kp N1>;
+            bindings =
+                <&kp Z &kp S &kp D &kp C &kp X &kp DOT &kp N1 &kp N2 &kp N1>,
+                <&macro_wait_time 50>,
+                <&kp ENTER>;
+
             label = "PI_VALUE";
         };
 
@@ -416,11 +420,11 @@
 
         ADVANCE {
             bindings = <
-&kp GRAVE     &kp F1           &kp F2           &kp F3         &kp F4         &kp F5    &kp PG_UP      &kp F6  &kp F7          &kp F8         &kp F9            &kp F10            &trans
-&trans        &kp LS(F1)       &kp LS(F2)       &kp LS(F3)     &kp LA(F4)     &trans    &kp PAGE_DOWN  &trans  &trans          &kp LA(EQUAL)  &trans            &kp F11            &kp F12
-&kp CAPSLOCK  &kp HOME         &kp END          &kp PG_UP      &kp PG_DN      &trans    &kp HOME       &trans  &kp MINUS       &kp EQUAL      &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp RIGHT_SHIFT
-&trans        &kp LC(HOME)     &kp LC(END)      &kp LC(PG_UP)  &kp LC(PG_DN)  &trans    &kp END        &trans  &kp UNDERSCORE  &kp PLUS       &kp LEFT_BRACE    &kp RIGHT_BRACE    &trans
-&to 3         &switch_bt1_usb  &swtich_bt2_usb  &trans         &trans         &trans    &trans         &trans  &kp LC(ENTER)   &trans         &trans            &out OUT_TOG
+&kp GRAVE     &kp F1        &kp F2       &kp F3         &kp F4         &kp F5           &switch_bt1_usb  &kp F6  &kp F7          &kp F8         &kp F9            &kp F10            &trans
+&trans        &kp LS(F1)    &kp LS(F2)   &kp LS(F3)     &none          &kp LA(F4)       &swtich_bt2_usb  &none   &none           &kp LA(EQUAL)  &kp LS(F9)        &kp F11            &kp F12
+&trans        &kp HOME      &kp END      &kp PG_UP      &kp PG_DN      &kp CAPS         &bt BT_PRV       &none   &kp MINUS       &kp EQUAL      &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp RIGHT_SHIFT
+&trans        &kp LC(HOME)  &kp LC(END)  &kp LC(PG_UP)  &kp LC(PG_DN)  &kp LC(GRAVE)    &bt BT_NXT       &none   &kp UNDERSCORE  &kp PLUS       &kp LEFT_BRACE    &kp RIGHT_BRACE    &trans
+&out OUT_TOG  &trans        &trans       &trans         &trans         &trans           &to 3            &trans  &kp LC(ENTER)   &trans         &trans            &trans
             >;
 
             display-name = "ADVANCE";
