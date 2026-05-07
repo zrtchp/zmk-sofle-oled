@@ -1,7 +1,7 @@
 if SHIELD_EYELASH_SOFLE_LEFT
 
 config ZMK_KEYBOARD_NAME
-    default "Eyelash Solfe"
+    default "RUI KEYBOARD"
 
 config ZMK_SPLIT_ROLE_CENTRAL
     default y
