@@ -34,7 +34,7 @@
         #sensor-binding-cells = <0>;
         bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
 
-        tap-ms = <20>;
+        tap-ms = <150>;
         label = "scroll_v";
     };
 
@@ -44,7 +44,7 @@
         #sensor-binding-cells = <0>;
         bindings = <&msc SCRL_RIGHT>, <&msc SCRL_LEFT>;
 
-        tap-ms = <20>;
+        tap-ms = <150>;
     };
 
     right_layer: right_layer {
@@ -298,7 +298,7 @@
 &my_string             &kp LCTRL  &kp LEFT_GUI  &kp LEFT_ALT  &left_layer  &lt 4 SPACE    &kp ENTER        &kp SPACE  &kp ENTER  &right_layer  &shift_ctrl_shift_alt_combo  &kp DELETE
             >;
 
-            sensor-bindings = <&inc_dec_kp K_SCROLL_DOWN K_SCROLL_UP>;
+            sensor-bindings = <&scroll_encoder>;
             display-name = "BASE";
         };
 
@@ -343,11 +343,11 @@
 
         XLS {
             bindings = <
-&none  &none           &none           &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &none              &none  &none  &none          &none         &none          &none  &trans
-&none  &kp SLASH       &kp ASTERISK    &kp MINUS             &kp PLUS               &excel_text_tap    &none  &none  &none          &excel_index  &excel_offset  &none  &none
-&none  &excel_average  &excel_sum_tap  &excel_date_tap       &excel_filter          &none              &none  &none  &none          &none         &none          &none  &none
-&none  &kp EQUAL       &excel_xlookup  &excel_countifs       &excel_vlookup         &kp COMMA          &none  &none  &excel_xmatch  &none         &none          &none  &none
-&none  &none           &none           &none                 &none                  &none              &none  &none  &none          &none         &none          &none
+&none      &none           &kp F2          &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp BACKSPACE      &none  &none  &none          &none         &none          &none  &trans
+&none      &kp SLASH       &kp ASTERISK    &kp MINUS             &kp PLUS               &excel_text_tap    &none  &none  &none          &excel_index  &excel_offset  &none  &none
+&none      &excel_average  &excel_sum_tap  &excel_date_tap       &excel_filter          &none              &none  &none  &none          &none         &none          &none  &none
+&kp ENTER  &kp EQUAL       &excel_xlookup  &excel_countifs       &excel_vlookup         &kp COMMA          &none  &none  &excel_xmatch  &none         &none          &none  &none
+&none      &none           &none           &none                 &none                  &none              &none  &none  &none          &none         &none          &none
             >;
 
             label = "XLS";
