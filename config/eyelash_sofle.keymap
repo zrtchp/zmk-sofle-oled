@@ -16,7 +16,7 @@
 
 &msc {
     acceleration-exponent = <1>;      // 0
-    time-to-max-speed-ms = <100>;       // 300
+    time-to-max-speed-ms = <150>;       // 300
     delay-ms = <0>;                   // 0
 };
 
@@ -99,6 +99,15 @@
         bindings = <&excel_sumifs>, <&excel_sumproduct>;
 
         tapping-term-ms = <400>;
+    };
+
+    excel_text_tap: excel_text_tap {
+        compatible = "zmk,behavior-tap-dance";
+        label = "EXCEL_TEXT_TAP";
+        #binding-cells = <0>;
+        bindings = <&excel_text>, <&excel_textjoin>, <&excel_textsplit>;
+
+        tapping-term-ms = <350>;
     };
 
     behaviors {
@@ -261,6 +270,20 @@
             bindings = <&kp I &kp N &kp D &kp E &kp X &kp LPAR>;
             label = "EXCEL_INDEX";
         };
+
+        excel_textsplit: excel_textsplit {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp T &kp E &kp X &kp T &kp S &kp P &kp L &kp I &kp T &kp LPAR>;
+            label = "EXCEL_TEXTSPLIT";
+        };
+
+        excel_filter: excel_filter {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&none>;
+            label = "EXCEL_FILTER";
+        };
     };
 
     keymap {
@@ -268,11 +291,11 @@
 
         BASE {
             bindings = <
-&kp ESC                &kp N1     &kp N2        &kp N3        &kp N4       &kp N5         &kp UP_ARROW     &kp N6       &kp N7     &kp N8        &kp N9                       &kp N0      &kp BACKSPACE
-&kp TAB                &kp Q      &kp W         &kp E         &kp R        &kp T          &kp DOWN_ARROW   &kp Y        &kp U      &kp I         &kp O                        &kp P       &kp BSLH
-&ctrl_shift_alt_combo  &kp A      &kp S         &kp D         &kp F        &kp G          &kp LEFT_ARROW   &kp H        &kp J      &kp K         &kp L                        &kp SEMI    &kp APOS
-&kp LSHFT              &kp Z      &kp X         &kp C         &kp V        &kp B          &kp RIGHT_ARROW  &kp N        &kp M      &kp COMMA     &kp DOT                      &kp FSLH    &kp RCTRL
-&my_string             &kp LCTRL  &kp LEFT_GUI  &kp LEFT_ALT  &left_layer  &lt 4 SPACE    &kp ENTER        &lt 4 SPACE  &kp ENTER  &right_layer  &shift_ctrl_shift_alt_combo  &kp DELETE
+&kp ESC                &kp N1     &kp N2        &kp N3        &kp N4       &kp N5         &kp UP_ARROW     &kp N6     &kp N7     &kp N8        &kp N9                       &kp N0      &kp BACKSPACE
+&kp TAB                &kp Q      &kp W         &kp E         &kp R        &kp T          &kp DOWN_ARROW   &kp Y      &kp U      &kp I         &kp O                        &kp P       &kp BSLH
+&ctrl_shift_alt_combo  &kp A      &kp S         &kp D         &kp F        &kp G          &kp LEFT_ARROW   &kp H      &kp J      &kp K         &kp L                        &kp SEMI    &kp APOS
+&kp LSHFT              &kp Z      &kp X         &kp C         &kp V        &kp B          &kp RIGHT_ARROW  &kp N      &kp M      &kp COMMA     &kp DOT                      &kp FSLH    &kp RCTRL
+&my_string             &kp LCTRL  &kp LEFT_GUI  &kp LEFT_ALT  &left_layer  &lt 4 SPACE    &kp ENTER        &kp SPACE  &kp ENTER  &right_layer  &shift_ctrl_shift_alt_combo  &kp DELETE
             >;
 
             sensor-bindings = <&inc_dec_kp K_SCROLL_DOWN K_SCROLL_UP>;
@@ -281,11 +304,11 @@
 
         ADVANCE {
             bindings = <
-&kp GRAVE     &kp F1        &kp F2       &kp F3         &kp F4         &kp F5           &switch_bt1   &kp F6          &kp F7         &kp F8            &kp F9             &kp F10  &trans
-&trans        &kp LS(F1)    &kp LS(F2)   &kp LS(F3)     &none          &kp LA(F4)       &switch_bt2   &none           &kp LA(EQUAL)  &none             &kp LS(F9)         &kp F11  &kp F12
-&trans        &kp HOME      &kp END      &kp PG_UP      &kp PG_DN      &kp CAPS         &switch_bt3   &kp MINUS       &kp EQUAL      &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &none    &kp RIGHT_SHIFT
-&trans        &kp LC(HOME)  &kp LC(END)  &kp LC(PG_UP)  &kp LC(PG_DN)  &kp LC(GRAVE)    &bt BT_NXT    &kp UNDERSCORE  &kp PLUS       &kp LEFT_BRACE    &kp RIGHT_BRACE    &none    &trans
-&out OUT_TOG  &trans        &trans       &trans         &trans         &trans           &out OUT_USB  &trans          &kp LC(ENTER)  &to 2             &trans             &trans
+&kp GRAVE  &kp F1        &kp F2       &kp F3         &kp F4         &kp F5           &switch_bt1   &kp F6            &kp F7          &kp F8         &kp F9             &kp F10  &trans
+&trans     &kp LS(F1)    &kp LS(F2)   &kp LS(F3)     &none          &kp LA(F4)       &switch_bt2   &none             &none           &kp LA(EQUAL)  &kp LS(F9)         &kp F11  &kp F12
+&trans     &kp HOME      &kp END      &kp PG_UP      &kp PG_DN      &kp LS(RC(L))    &switch_bt3   &kp LEFT_BRACKET  &kp MINUS       &kp EQUAL      &kp RIGHT_BRACKET  &none    &none
+&trans     &kp LC(HOME)  &kp LC(END)  &kp LC(PG_UP)  &kp LC(PG_DN)  &kp LC(GRAVE)    &bt BT_NXT    &kp LEFT_BRACE    &kp UNDERSCORE  &kp PLUS       &kp RIGHT_BRACE    &none    &trans
+&kp CAPS   &trans        &trans       &trans         &trans         &trans           &out OUT_USB  &trans            &kp LC(ENTER)   &to 2          &trans             &trans
             >;
 
             display-name = "ADVANCE";
@@ -298,7 +321,7 @@
 &trans  &trans  &none   &none   &none   &trans    &trans          &kp DOLLAR             &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp EQUAL     &kp COLON
 &trans  &none   &none   &none   &none   &none     &trans          &kp LEFT_PARENTHESIS   &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_NUMBER_6  &kp KP_PLUS   &kp DOUBLE_QUOTES
 &trans  &trans  &trans  &trans  &trans  &trans    &trans          &kp RIGHT_PARENTHESIS  &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &kp KP_ENTER  &kp AT_SIGN
-&trans  &trans  &trans  &trans  &mo 0   &trans    &kp KP_NUMLOCK  &trans                 &trans           &kp KP_NUMBER_0  &to 0            &kp KP_DOT
+&trans  &trans  &trans  &trans  &to 0   &trans    &kp KP_NUMLOCK  &trans                 &trans           &kp KP_NUMBER_0  &to 0            &kp KP_DOT
             >;
 
             sensor-bindings = <&inc_dec_kp LC(PAGE_DOWN) LC(PAGE_UP)>;
@@ -320,11 +343,11 @@
 
         XLS {
             bindings = <
-&trans  &trans          &trans          &trans           &trans          &trans    &trans  &trans  &trans         &trans        &trans         &trans  &trans
-&trans  &trans          &trans          &trans           &trans          &trans    &trans  &trans  &trans         &excel_index  &excel_offset  &trans  &trans
-&trans  &excel_average  &excel_sum_tap  &excel_date_tap  &trans          &trans    &trans  &trans  &trans         &trans        &trans         &trans  &trans
-&trans  &trans          &excel_xlookup  &excel_countifs  &excel_vlookup  &trans    &trans  &trans  &excel_xmatch  &trans        &trans         &trans  &trans
-&trans  &trans          &trans          &trans           &trans          &trans    &trans  &trans  &trans         &trans        &trans         &trans
+&none  &none           &none           &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &none              &none  &none  &none          &none         &none          &none  &trans
+&none  &kp SLASH       &kp ASTERISK    &kp MINUS             &kp PLUS               &excel_text_tap    &none  &none  &none          &excel_index  &excel_offset  &none  &none
+&none  &excel_average  &excel_sum_tap  &excel_date_tap       &excel_filter          &none              &none  &none  &none          &none         &none          &none  &none
+&none  &kp EQUAL       &excel_xlookup  &excel_countifs       &excel_vlookup         &kp COMMA          &none  &none  &excel_xmatch  &none         &none          &none  &none
+&none  &none           &none           &none                 &none                  &none              &none  &none  &none          &none         &none          &none
             >;
 
             label = "XLS";
