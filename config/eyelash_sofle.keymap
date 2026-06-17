@@ -129,7 +129,7 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings =
-                <&kp LG(LA(LS(LC(RCTRL))))>,
+                <&kp LA(LS(LC(BACKSLASH)))>,
                 <&macro_wait_time 300>,
                 <&out OUT_TOG>;
 
